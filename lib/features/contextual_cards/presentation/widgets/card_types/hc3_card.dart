@@ -6,6 +6,7 @@ import 'package:famproject/features/contextual_cards/presentation/cubits/card_cu
 import 'package:famproject/features/contextual_cards/presentation/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class HC3BigDisplay extends StatefulWidget {
   final CardModel card;
@@ -65,12 +66,12 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Stack(
-          children: [
+          children: <Widget>[
             // Action buttons (behind the card)
             Positioned.fill(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
+                children: <Widget>[
                   _buildActionButton(
                     icon: Icons.notifications_none,
                     label: 'remind later',
@@ -116,7 +117,7 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Icon(icon, size: 32, color: Colors.black54),
             const SizedBox(height: 8),
             Text(
@@ -149,19 +150,12 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
             ? ColorUtils.parseColor(widget.card.bgColor)
             : null,
       ),
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.transparent, Colors.black.withOpacity(0.3)],
-          ),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
+            const Gap(100),
             if (widget.card.formattedTitle != null)
               FormattedTextWidget(
                 formattedText: widget.card.formattedTitle!,
@@ -180,14 +174,12 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
                   color: Colors.white,
                 ),
               ),
-            const Spacer(),
-            if (widget.card.cta != null && widget.card.cta!.isNotEmpty)
+            const Spacer(),  // This will push the CTAs to the bottom
+            if (widget.card.cta != null && widget.card.cta!.isNotEmpty) ...[
               ...widget.card.cta!.map(
-                (cta) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: _buildCTAButton(cta),
-                ),
+                (CTA cta) => _buildCTAButton(cta),
               ),
+            ]
           ],
         ),
       ),
@@ -196,17 +188,21 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
   Widget _buildCTAButton(CTA cta) => GestureDetector(
       onTap: () => DeeplinkHandler.handleUrl(cta.url),
       child: Container(
+        height: 42,
+        width: 128,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         decoration: BoxDecoration(
           color: ColorUtils.parseColor(cta.bgColor) ?? Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          cta.text,
-          style: TextStyle(
-            color: ColorUtils.parseColor(cta.textColor) ?? Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
+        child: Center(
+          child: Text(
+            cta.text,
+            style: TextStyle(
+              color: ColorUtils.parseColor(cta.textColor) ?? Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
           ),
         ),
       ),

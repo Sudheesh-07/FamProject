@@ -16,13 +16,13 @@ class Entity extends Equatable {
 
   /// Creates an [Entity] instance from a JSON map.
   factory Entity.fromJson(Map<String, dynamic> json) => Entity(
-      text: json['text'] as String,
-      color: json['color'] as String,
-      url: json['url'] as String,
-      fontStyle: json['font_style'] as String,
-      fontSize: json['font_size'] as int,
-      fontFamily: json['font_family'] as String,
-      type: json['type'] as String,
+      text: json['text'] as String? ?? '',
+      color: json['color'] as String?,
+      url: json['url'] as String?,
+      fontStyle: json['font_style'] as String?,
+      fontSize: json['font_size'] as int?,
+      fontFamily: json['font_family'] as String?,
+      type: json['type'] as String?,
     );
   /// The text content of the entity.
   final String text;
@@ -87,10 +87,10 @@ class CardImage extends Equatable {
   });
   /// Creates a [CardImage] instance from a JSON map.
   factory CardImage.fromJson(Map<String, dynamic> json) => CardImage(
-      imageType: json['image_type'] as String ?? '',
-      assetType: json['asset_type'] as String,
-      imageUrl: json['image_url'] as String,
-      aspectRatio: json['aspect_ratio']?.toDouble() as double?,
+      imageType: json['image_type'] as String? ?? '',
+      assetType: json['asset_type'] as String?,
+      imageUrl: json['image_url'] as String?,
+      aspectRatio: (json['aspect_ratio'] as num?)?.toDouble(),
     );
     /// The type of the image (e.g., 'asset', 'network').
   final String imageType;
@@ -112,8 +112,8 @@ class BgGradient extends Equatable {
 
   /// Creates a [BgGradient] instance from a JSON map.
   factory BgGradient.fromJson(Map<String, dynamic> json) => BgGradient(
-      colors: List<String>.from(json['colors']as List<dynamic>),
-      angle: json['angle'] as int,
+      colors: List<String>.from(json['colors'] as List<dynamic>? ?? []),
+      angle: json['angle'] as int? ?? 0,
     );
     /// List of colors in the gradient.
   final List<String> colors;
@@ -141,14 +141,14 @@ class CTA extends Equatable {
 
   /// Creates a [CTA] instance from a JSON map.
   factory CTA.fromJson(Map<String, dynamic> json) => CTA(
-      text: json['text'] as String ?? '' ,
-      bgColor: json['bg_color'] as String,
-      textColor: json['text_color'] as String,
-      url: json['url'] as String,
-      type: json['type'] as String,
-      isCircular: json['is_circular'] as bool,
-      isSecondary: json['is_secondary'] as bool,
-      strokeWidth: json['stroke_width'] as int,
+      text: json['text'] as String? ?? '',
+      bgColor: json['bg_color'] as String?,
+      textColor: json['text_color'] as String?,
+      url: json['url'] as String?,
+      type: json['type'] as String?,
+      isCircular: json['is_circular'] as bool?,
+      isSecondary: json['is_secondary'] as bool?,
+      strokeWidth: json['stroke_width'] as int?,
     );
     /// The display text of the CTA button.
   final String text;

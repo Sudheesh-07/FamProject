@@ -82,7 +82,7 @@ class CardGroupWidget extends StatelessWidget {
   Widget _buildCard(CardModel card) {
     switch (cardGroup.designType) {
       case 'HC1':
-        return HC1SmallDisplay(card: card);
+        return HC1SmallDisplay(card: card, isScrollable: cardGroup.isScrollable);
       case 'HC3':
         return HC3BigDisplay(card: card);
       case 'HC5':

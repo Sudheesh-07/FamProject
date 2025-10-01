@@ -46,6 +46,36 @@ class FormattedTextWidget extends StatelessWidget {
     final template = formattedText.text;
     final entities = formattedText.entities;
 
+    // If we have entities but no placeholders in the template,
+    // just display the entities directly
+    if (!template.contains('{}') && entities.isNotEmpty) {
+      // Display entities side by side with special handling for second entity
+      for (int i = 0; i < entities.length; i++) {
+        if (i > 0) {
+          spans.add(const TextSpan(text: ' ')); // Add space between entities
+        }
+
+        // Special handling for second entity (index 1)
+        if (i == 1) {
+          spans.add(
+            WidgetSpan(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(
+                  entities[i].text,
+                  style: _buildEntitySpan(entities[i], baseStyle).style!,
+                ),
+              ),
+            ),
+          );
+        } else {
+          spans.add(_buildEntitySpan(entities[i], baseStyle));
+        }
+      }
+      return spans;
+    }
+
+    // Original placeholder replacement logic
     int entityIndex = 0;
     int currentIndex = 0;
 
@@ -70,10 +100,26 @@ class FormattedTextWidget extends StatelessWidget {
         spans.add(TextSpan(text: textBeforePlaceholder, style: baseStyle));
       }
 
-      // Add entity at placeholder position
+      // Add entity at placeholder position with special handling for second entity
       if (entityIndex < entities.length) {
-        final entity = entities[entityIndex];
-        spans.add(_buildEntitySpan(entity, baseStyle));
+        if (entityIndex == 1) {
+          spans.add(
+            WidgetSpan(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(
+                  entities[entityIndex].text,
+                  style: _buildEntitySpan(
+                    entities[entityIndex],
+                    baseStyle,
+                  ).style!,
+                ),
+              ),
+            ),
+          );
+        } else {
+          spans.add(_buildEntitySpan(entities[entityIndex], baseStyle));
+        }
         entityIndex++;
       }
 

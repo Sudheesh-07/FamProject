@@ -1,5 +1,6 @@
 import 'package:famproject/features/contextual_cards/presentation/widgets/contextual_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,25 +8,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFBAF03),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Text(
-                'FamPay',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+        centerTitle: true,
+        title: SvgPicture.asset(
+        'assets/images/fampaylogo.svg',
+        fit: BoxFit.contain,
+      ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
