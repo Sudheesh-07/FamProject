@@ -4,9 +4,25 @@ A Flutter application that implements a dynamic card-based UI system with multip
 
 ## Demo
 
-https://github.com/user-attachments/assets/4a3dfd42-821b-4a8c-8fbf-f634ef3df016
+https://github.com/user-attachments/assets/c070a240-3eeb-49d1-8d56-ce8ebf381b2c
 
 _App demonstration showing different card types and interactions_
+
+# FamPay Contextual Cards Project
+
+A Flutter application that implements a dynamic card-based UI system with multiple card types and layouts. The app follows clean architecture principles and implements modern Flutter development practices.
+
+## Table of Contents
+
+- [Features](#features)
+- [Card Types](#card-types)
+- [Project Structure](#project-structure)
+  - [Key Components](#key-components-description)
+- [Technical Implementation](#technical-implementation)
+- [Setup and Installation](#setup-and-installation)
+- [Dependencies](#dependencies)
+- [Development Guidelines](#development-guidelines)
+- [Building for Release](#building-for-release)
 
 ## Features
 
