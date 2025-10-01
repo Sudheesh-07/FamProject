@@ -1,10 +1,9 @@
+import 'package:famproject/features/contextual_cards/data/models/card_action_model.dart';
+import 'package:famproject/features/contextual_cards/data/repositories/card_repository_impl.dart';
+import 'package:famproject/features/contextual_cards/domain/repositories/card_repository.dart';
+import 'package:famproject/features/contextual_cards/presentation/cubits/card_cubits.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../../data/models/card_action_model.dart';
-import '../../data/repositories/card_repository_impl.dart';
-import '../../domain/repositories/card_repository.dart';
-import '../../presentation/cubits/cards_cubit.dart';
 
 final getIt = GetIt.instance;
 

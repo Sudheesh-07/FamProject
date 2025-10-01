@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class ColourUtils {
+class ColorUtils {
   static Color? parseColor(String? colorString) {
     if (colorString == null || colorString.isEmpty) return null;
     String hex = colorString.replaceAll('#', '');
