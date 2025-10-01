@@ -37,52 +37,61 @@ class CardGroupWidget extends StatelessWidget {
   }
 
   Widget _buildScrollableLayout(List<CardModel> cards) => Container(
-      height: cardGroup.height?.toDouble() ?? 200,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: cards.length,
-        itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.only(right: index < cards.length - 1 ? 12 : 0),
-            child: _buildCard(cards[index]),
-          ),
+    height: cardGroup.height?.toDouble() ?? 200,
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.zero, // Remove internal padding
+      itemCount: cards.length,
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.only(right: index < cards.length - 1 ? 12 : 0),
+        child: _buildCard(cards[index]),
       ),
-    );
+    ),
+  );
 
   Widget _buildNonScrollableLayout(List<CardModel> cards) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        children: cards.map((card) => Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: _buildCard(card),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+    child: Row(
+      children: cards
+          .map(
+            (card) => Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: _buildCard(card),
+              ),
             ),
-          )).toList(),
-      ),
-    );
+          )
+          .toList(),
+    ),
+  );
 
   Widget _buildHC9Layout(List<CardModel> cards) => Container(
-      height: cardGroup.height?.toDouble() ?? 195,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: cards.length,
-        itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.only(right: index < cards.length - 1 ? 12 : 0),
-            child: HC9DynamicWidth(
-              card: cards[index],
-              height: cardGroup.height?.toDouble() ?? 195,
-            ),
-          ),
+    height: cardGroup.height?.toDouble() ?? 195,
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.zero, // Remove internal padding
+      itemCount: cards.length,
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.only(right: index < cards.length - 1 ? 12 : 0),
+        child: HC9DynamicWidth(
+          card: cards[index],
+          height: cardGroup.height?.toDouble() ?? 195,
+        ),
       ),
-    );
+    ),
+  );
 
   Widget _buildCard(CardModel card) {
     switch (cardGroup.designType) {
       case 'HC1':
-        return HC1SmallDisplay(card: card, isScrollable: cardGroup.isScrollable);
+        return HC1SmallDisplay(
+          card: card,
+          isScrollable: cardGroup.isScrollable,
+        );
       case 'HC3':
         return HC3BigDisplay(card: card);
       case 'HC5':

@@ -1,3 +1,4 @@
+import 'package:famproject/core/logger/logger.dart';
 import 'package:famproject/features/contextual_cards/presentation/cubits/card_cubits.dart';
 import 'package:famproject/features/contextual_cards/presentation/widgets/card_group_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class ContextualCardsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<CardsCubit, CardsState>(
     builder: (BuildContext context, CardsState state) {
+      logInfo('Current State: $state');
       if (state is CardsLoading) {
         return const Center(child: CircularProgressIndicator());
       }

@@ -66,7 +66,7 @@ class _HC3BigDisplayState extends State<HC3BigDisplay>
       }
     },
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
       child: Stack(
         children: <Widget>[
           // Action buttons (behind the card)

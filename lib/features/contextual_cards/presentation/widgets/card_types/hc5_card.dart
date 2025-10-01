@@ -12,30 +12,27 @@ class HC5ImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
       onTap: () => DeeplinkHandler.handleUrl(card.url),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: card.bgImage?.imageUrl != null
-              ? CachedNetworkImage(
-                  imageUrl: card.bgImage!.imageUrl!,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(
-                    height: 200,
-                    color: Colors.grey[300],
-                    child: const Center(child: CircularProgressIndicator()),
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    height: 200,
-                    color: Colors.grey[300],
-                    child: const Icon(Icons.error),
-                  ),
-                )
-              : Container(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: card.bgImage?.imageUrl != null
+            ? CachedNetworkImage(
+                imageUrl: card.bgImage!.imageUrl!,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(
                   height: 200,
-                  color: ColorUtils.parseColor(card.bgColor),
+                  color: Colors.grey[300],
+                  child: const Center(child: CircularProgressIndicator()),
                 ),
-        ),
+                errorWidget: (context, url, error) => Container(
+                  height: 200,
+                  color: Colors.grey[300],
+                  child: const Icon(Icons.error),
+                ),
+              )
+            : Container(
+                height: 200,
+                color: ColorUtils.parseColor(card.bgColor),
+              ),
       ),
     );
 }

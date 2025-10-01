@@ -4,7 +4,6 @@ import 'package:famproject/core/utils/deeplink_handler.dart';
 import 'package:famproject/features/contextual_cards/data/models/api_model.dart';
 import 'package:famproject/features/contextual_cards/presentation/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HC1SmallDisplay extends StatelessWidget {
   final CardModel card;

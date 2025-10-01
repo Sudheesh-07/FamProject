@@ -138,6 +138,7 @@ class FormattedTextWidget extends StatelessWidget {
       color: entityColor,
       fontSize: fontSize,
       fontWeight: fontWeight,
+      decorationColor: entityColor,
     );
 
     entityStyle = TextStyleUtils.applyFontStyle(entityStyle, entity.fontStyle);
@@ -146,7 +147,10 @@ class FormattedTextWidget extends StatelessWidget {
     if (entity.url != null && entity.url!.isNotEmpty) {
       return TextSpan(
         text: entity.text,
-        style: entityStyle.copyWith(decoration: TextDecoration.underline),
+        style: entityStyle.copyWith(
+          decoration: TextDecoration.underline,
+          decorationColor: entityColor, // Match underline color with text color
+        ),
         recognizer: TapGestureRecognizer()
           ..onTap = () {
             DeeplinkHandler.handleUrl(entity.url);
