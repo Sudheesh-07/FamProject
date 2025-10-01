@@ -122,6 +122,7 @@ test/                             # Test directory
 
 pubspec.yaml                      # Project configuration and dependencies
 .env                             # Environment variables
+.env.example                       # A Copy of how the .env is declared
 ```
 
 ### Key Components Description
@@ -192,6 +193,7 @@ pubspec.yaml                      # Project configuration and dependencies
 
    - Create a `.env` file in the root directory
    - Add necessary environment variables
+   - Added .env.example for the reference
 
 4. **Running the App**
    ```bash
