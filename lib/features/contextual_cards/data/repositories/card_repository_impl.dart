@@ -4,12 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:famproject/features/contextual_cards/data/models/api_model.dart';
 import 'package:famproject/features/contextual_cards/data/models/card_action_model.dart';
 import 'package:famproject/features/contextual_cards/domain/repositories/card_repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
 class CardRepositoryImpl implements CardRepository {
-  final String apiUrl =
-      'https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage';
+  final String apiUrl = dotenv.env['API_URL'] ?? '';
 
   late Box<CardActionModel> _cardActionsBox;
 
@@ -23,7 +23,8 @@ class CardRepositoryImpl implements CardRepository {
       final http.Response response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {
-        final List<dynamic> jsonData = json.decode(response.body) as List<dynamic>;
+        final List<dynamic> jsonData =
+            json.decode(response.body) as List<dynamic>;
         final List<ApiResponse> apiResponses = jsonData
             .map((json) => ApiResponse.fromJson(json as Map<String, dynamic>))
             .toList();
@@ -69,15 +70,15 @@ class CardRepositoryImpl implements CardRepository {
 
   @override
   List<int> getDismissedCardIds() => _cardActionsBox.values
-        .where((CardActionModel action) => action.action == 'dismissed')
-        .map((CardActionModel action) => action.cardId)
-        .toList();
+      .where((CardActionModel action) => action.action == 'dismissed')
+      .map((CardActionModel action) => action.cardId)
+      .toList();
 
   @override
   List<int> getRemindedCardIds() => _cardActionsBox.values
-        .where((CardActionModel action) => action.action == 'reminded')
-        .map((CardActionModel action) => action.cardId)
-        .toList();
+      .where((CardActionModel action) => action.action == 'reminded')
+      .map((CardActionModel action) => action.cardId)
+      .toList();
 
   @override
   Future<void> clearRemindedCards() async {
