@@ -18,7 +18,6 @@ class HC1SmallDisplay extends StatelessWidget {
   Widget build(BuildContext context) => GestureDetector(
     onTap: () => DeeplinkHandler.handleUrl(card.url),
     child: Container(
-      height: 64,
       width: isScrollable ? 250 : MediaQuery.of(context).size.width/2.2,
       decoration: BoxDecoration(
         color: ColorUtils.parseColor(card.bgColor),
